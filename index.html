@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kids Coding Academy</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+    <style>
+        body {
+            background-color: #343a40;
+            color: #f8f9fa;
+        }
+
+        .nav-tabs .nav-link {
+            color: #f8f9fa;
+            border-color: #6c757d;
+        }
+
+        .nav-tabs .nav-link.active {
+            background-color: #007bff;
+            border-color: #007bff;
+            color: #fff;
+        }
+
+        .nav-tabs .nav-link:hover {
+            border-color: #007bff;
+            color: #007bff;
+        }
+
+        .accordion-button {
+            background-color: #495057;
+            color: #f8f9fa;
+        }
+	
+	.container {
+            display: flex;
+            height: 100vh;
+        }
+
+       .left-section {
+    width: 60%;
+    padding: 20px;
+    background-color: #343a40;
+    color: #f8f9fa;
+    box-sizing: border-box;
+    overflow-y: auto;
+    border-right: 1px solid #ddd;
+    transition: width 0.3s ease;
+}
+
+.right-section {
+    width: 40%;
+    background-color: #343a40;
+    padding: 10px;
+    box-sizing: border-box;
+    overflow-y: auto;
+    color: #f8f9fa;
+    position: absolute; /* Make it touch the right edge */
+    right: 0;
+    top: 0;
+    height: 100vh; /* Full height */
+}
+
+.right-section {
+   
+    scrollbar-width: 5px; /* Hide scrollbar in Firefox */
+}
+
+
+
+        .accordion-button:not(.collapsed) {
+            background-color: #007bff;
+            color: white;
+        }
+
+        .accordion-body {
+            background-color: #495057;
+        }
+
+.show-scrollbar::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.5); /* Show scrollbar when scrolling */
+}
+
+    </style>
+</head>
+
+<body>
+    <div class="container mt-4">
+        <div class="left-section" id="leftSection">
+            <h1>Welcome to Kids Coding Academy!</h1>
+            <p>Click on the topics on the right to explore HTML, CSS, and web development!</p>
+        </div>
+	 <div class="right-section">
+        <h1>Kids Coding Academy</h1>
+
+        <ul class="nav nav-tabs" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="contents-tab" data-bs-toggle="tab" data-bs-target="#contents" type="button" role="tab" aria-controls="contents" aria-selected="true">Contents</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="description-tab" data-bs-toggle="tab" data-bs-target="#description" type="button" role="tab" aria-controls="description" aria-selected="false">Description</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="exercises-tab" data-bs-toggle="tab" data-bs-target="#exercises" type="button" role="tab" aria-controls="exercises" aria-selected="false">Exercise Files</button>
+            </li>
+        </ul>
+
+        <div class="tab-content" id="myTabContent">
+            <div class="tab-pane fade show active" id="contents" role="tabpanel" aria-labelledby="contents-tab">
+                <div class="accordion" id="contentAccordion">
+                    <!-- Accordion items will be injected here by JavaScript -->
+                </div>
+            </div>
+            <div class="tab-pane fade" id="description" role="tabpanel" aria-labelledby="description-tab">
+                <p>Welcome to Kids Coding Academy! This tutorial will teach you the basics of HTML, the language of the web. We'll learn how to build your own web pages and make them look amazing.</p>
+            </div>
+            <div class="tab-pane fade" id="exercises" role="tabpanel" aria-labelledby="exercises-tab">
+                <p>Download the exercise files here.</p>
+            </div>
+        </div>
+    </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const content = {
+            "Welcome to the World of Web Pages!": [
+                "What's a Web Page? (Like a digital magazine!)",
+                "Visiting Websites: How does it work? (Simple explanation)",
+                "What's HTML? (Think of it as the secret code for web pages)",
+                "Getting Started: Your Digital Toolbox",
+                "Text Editors: Your Magic Writing Machine (Introducing VS Code or similar)",
+                "Web Browsers: Your Window to the Web (Chrome, Firefox - how to use them)",
+                "Your First Web Page: Hello, World!",
+                "The Basic HTML Structure (Like building with LEGOs)",
+                "Making a Title for Your Page (What's a title?)",
+                "Adding Your Message (Writing your first words on a webpage)",
+                "Saving and Opening Your Web Page (Seeing your creation!)"
+            ],
+            "Making Your Web Page Awesome!": [
+                "Making Headings (Big and small titles - like in a storybook)",
+                "Writing Paragraphs (Telling your story in words)",
+                "Adding Line Breaks (Starting a new line - like in a poem)",
+                "Drawing Lines (Separating ideas with lines)",
+                "Leaving Secret Notes (Comments - for you to remember things)"
+            ],
+            "Making Your Words Look Cool!": [
+                "Making Words Bold (Important words!)",
+                "Making Words Italic (Slanted words!)",
+                "Underlining Words (Highlighting words)",
+                "Special Characters (Cool symbols like emojis and arrows)"
+            ],
+            "Making Lists (Like a Shopping List!)": [
+                "Unordered Lists (Bullet points - like a checklist)",
+                "Ordered Lists (Numbered lists - like steps in a recipe)"
+            ],
+            "Linking to Other Pages (Like a Treasure Map!)": [
+                "Making Links (Clickable words that take you to other pages)",
+                "Linking to Your Own Pages (Creating your own website with multiple pages!)"
+            ],
+            "Adding Pictures (Making Your Page Colorful!)": [
+                "Inserting Images (Adding photos and drawings)",
+                "Image Sizes (Making pictures big or small)"
+            ],
+            "Tables (Organizing Information)": [
+                "Making Tables (Rows and columns - like a spreadsheet)"
+            ],
+            "Making Forms (Asking Questions!)": [
+                "Input Boxes (Letting people type in answers)",
+                "Buttons (Clickable things that do something)"
+            ],
+            "Making Sections (Organizing Your Page)": [
+                "<div> (Containers for your content)",
+                "<span> (For styling small pieces of text)"
+            ],
+            "Making Your Page Look Even Better (A Sneak Peek at CSS!)": [
+                "Changing Colors and Fonts (Making your page stylish)"
+            ],
+            "Project Time!": [
+                "Build Your Own Website (A simple website about your favorite hobby, animal, or anything you like!)"
+            ],
+            "What's Next?": [
+                "Learning More (Where to find more cool HTML stuff)",
+                "JavaScript (Making your website interactive)"
+            ],
+            "HTML Tag Cheat Sheet": [
+                "(A simplified list of the most important HTML tags)"
+            ]
+        };
+
+        const accordion = document.getElementById('contentAccordion');
+
+for (const section in content) {
+    // Sanitize the section title to create a valid ID
+    const sanitizedSection = section
+        .replace(/[^a-zA-Z0-9\s]/g, '') // Remove special characters
+        .replace(/\s+/g, '-')           // Replace spaces with hyphens
+        .toLowerCase();                 // Convert to lowercase
+
+    const accordionItem = document.createElement('div');
+    accordionItem.classList.add('accordion-item');
+
+    const accordionHeader = document.createElement('h2');
+    accordionHeader.classList.add('accordion-header');
+
+    const accordionButton = document.createElement('button');
+    accordionButton.classList.add('accordion-button', 'collapsed');
+    accordionButton.type = 'button';
+    accordionButton.setAttribute('data-bs-toggle', 'collapse');
+    accordionButton.setAttribute('data-bs-target', `#collapse-${sanitizedSection}`);
+    accordionButton.setAttribute('aria-expanded', 'false');
+    accordionButton.setAttribute('aria-controls', `collapse-${sanitizedSection}`);
+    accordionButton.textContent = section;
+
+    accordionHeader.appendChild(accordionButton);
+
+    const accordionCollapse = document.createElement('div');
+    accordionCollapse.id = `collapse-${sanitizedSection}`;
+    accordionCollapse.classList.add('accordion-collapse', 'collapse');
+    accordionCollapse.setAttribute('data-bs-parent', '#contentAccordion');
+
+    const accordionBody = document.createElement('div');
+    accordionBody.classList.add('accordion-body');
+
+    const ul = document.createElement('ul');
+    content[section].forEach(item => {
+        const li = document.createElement('li');
+        li.textContent = item;
+li.addEventListener('click', function() {
+    // Redirect to the specified HTML file
+   // window.location.href = 'chapter1.html';
+   loadContent('chapter1.html')
+});
+        ul.appendChild(li);
+    });
+    accordionBody.appendChild(ul);
+    accordionCollapse.appendChild(accordionBody);
+    accordionItem.appendChild(accordionHeader);
+    accordionItem.appendChild(accordionCollapse);
+    accordion.appendChild(accordionItem);
+}
+    });
+
+ document.addEventListener('DOMContentLoaded', function () {
+        const rightSection = document.querySelector('.right-section');
+
+        function showScrollbar() {
+            rightSection.style.scrollbarWidth = "thin"; // Show scrollbar in Firefox
+            rightSection.classList.add("show-scrollbar"); // Add class to show scrollbar
+        }
+
+        function hideScrollbar() {
+            rightSection.classList.remove("show-scrollbar"); // Hide scrollbar
+        }
+
+        rightSection.addEventListener("scroll", function () {
+            rightSection.style.scrollbarWidth = "thin"; // Ensure it's visible
+            rightSection.classList.add("show-scrollbar");
+
+            // Hide after 2 seconds of inactivity
+            clearTimeout(rightSection.hideTimeout);
+            rightSection.hideTimeout = setTimeout(hideScrollbar, 2000);
+        });
+    });
+
+   function loadContent(pageName) {
+            fetch(pageName)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Failed to load the page');
+                    }
+                    return response.text();
+                })
+                .then(data => {
+                    // Update the content in the leftSection
+                    document.getElementById('leftSection').innerHTML = data;
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    document.getElementById('leftSection').innerHTML = "<p>Sorry, there was an error loading the content.</p>";
+                });
+        }
+</script>
+</body>
+</html>
+ 

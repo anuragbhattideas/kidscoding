@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Code Viewer</title>
+    <!-- Bootstrap for clean layout -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f0f0f0;
+        }
+        .container {
+            display: flex;
+            flex-direction: row;
+            gap: 20px;
+        }
+        .code-container {
+            width: 50%;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            height: 80vh;
+            overflow-y: scroll;
+        }
+        .output-container {
+            width: 50%;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            height: 80vh;
+            overflow-y: scroll;
+        }
+        textarea {
+            width: 100%;
+            height: 100%;
+            font-family: monospace;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            padding: 10px;
+            resize: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Left side: Editable HTML code -->
+        <div class="code-container">
+            <h3>HTML Code</h3>
+            <textarea id="htmlCode" oninput="updateOutput()">
+<!-- You can edit your HTML code here -->
+<h1>Hello, World!</h1>
+<p>This is an example of a live HTML viewer.</p>
+<button onclick="alert('Button clicked!')">Click Me!</button>
+            </textarea>
+        </div>
+
+        <!-- Right side: Output of the HTML code -->
+        <div class="output-container">
+            <h3>Output</h3>
+            <div id="output"></div>
+        </div>
+    </div>
+
+    <script>
+        // Function to update the output container with the HTML code from the textarea
+        function updateOutput() {
+            const htmlCode = document.getElementById('htmlCode').value;
+            const output = document.getElementById('output');
+            output.innerHTML = htmlCode;  // Render the HTML content
+        }
+
+        // Initial update when the page is loaded
+        window.onload = function() {
+            updateOutput();
+        };
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+</body>
+</html>
