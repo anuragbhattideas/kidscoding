@@ -224,14 +224,14 @@ for (const section in content) {
     accordionBody.classList.add('accordion-body');
 
     const ul = document.createElement('ul');
-    content[section].forEach(item => {
-        const li = document.createElement('li');
-        li.textContent = item;
-li.addEventListener('click', function() {
-    // Redirect to the specified HTML file
-   // window.location.href = 'chapter1.html';
-   loadContent('chapter1.html')
-});
+  content[section].forEach((item, index) => {
+    const li = document.createElement('li');
+    li.textContent = item;
+    li.addEventListener('click', function() {
+        const chapterFile = `chapter${index + 1}.html`;
+        loadContent(chapterFile);
+    });
+
         ul.appendChild(li);
     });
     accordionBody.appendChild(ul);
