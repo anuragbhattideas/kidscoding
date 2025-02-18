@@ -11,7 +11,23 @@
             background-color: #343a40;
             color: #f8f9fa;
         }
+  li {
+            list-style-type: none;
+            padding: 10px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
 
+        /* Hover effect */
+        li:hover {
+            background-color: #f0f0f0;
+        }
+
+        /* Style for clicked (highlighted) <li> */
+        li.selected {
+            background-color: #c0c0c0;
+            font-weight: bold;
+        }
         .nav-tabs .nav-link {
             color: #f8f9fa;
             border-color: #6c757d;
