@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-bs-theme="dark">
-
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,280 +7,364 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
     <style>
         body {
-            background-color: #343a40;
-            color: #f8f9fa;
+            background-color: #1E2733; /* Dark Blue/Gray */
+            color: #E0E0E0; /* Light Gray Text */
+            font-family: 'Arial', sans-serif;
         }
 
-        .nav-tabs .nav-link {
-            color: #f8f9fa;
-            border-color: #6c757d;
+        .container {
+            margin-top: 50px;
         }
 
-        .nav-tabs .nav-link.active {
-            background-color: #007bff;
-            border-color: #007bff;
-            color: #fff;
+        .course-tile {
+            background-color: #28313F; /* Slightly Lighter Tile Background */
+            color: #E0E0E0;
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2); /* More visible shadow */
         }
 
-        .nav-tabs .nav-link:hover {
-            border-color: #007bff;
-            color: #007bff;
+        .course-tile:hover {
+            transform: scale(1.05);
+            box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
         }
 
-        .accordion-button {
-            background-color: #495057;
-            color: #f8f9fa;
-        }
-	
-	.container {
-            display: flex;
-            height: 100vh;
+        .course-tile i {
+            font-size: 40px;
+            margin-bottom: 15px;
+            color: #00ADB5; /* Teal Icon Color */
         }
 
-       .left-section {
-    width: 60%;
-    padding: 20px;
-    background-color: #343a40;
-    color: #f8f9fa;
-    box-sizing: border-box;
-    overflow-y: auto;
-    border-right: 1px solid #ddd;
-    transition: width 0.3s ease;
-}
-
-.right-section {
-    width: 40%;
-    background-color: #343a40;
-    padding: 10px;
-    box-sizing: border-box;
-    overflow-y: auto;
-    color: #f8f9fa;
-    position: absolute; /* Make it touch the right edge */
-    right: 0;
-    top: 0;
-    height: 100vh; /* Full height */
-}
-
-.right-section {
-   
-    scrollbar-width: 5px; /* Hide scrollbar in Firefox */
-}
-
-
-
-        .accordion-button:not(.collapsed) {
-            background-color: #007bff;
-            color: white;
+        .course-title {
+            font-size: 20px;
+            font-weight: bold;
+            color: #00ADB5; /* Teal Title Color */
         }
 
-        .accordion-body {
-            background-color: #495057;
+        .course-description {
+            font-size: 16px;
+            color: #A0A0A0; /* Slightly darker description text */
         }
 
-.show-scrollbar::-webkit-scrollbar-thumb {
-    background-color: rgba(255, 255, 255, 0.5); /* Show scrollbar when scrolling */
-}
+        /* ... (responsive styles, etc.) */
 
+        .description-container {
+            background-color: #28313F; /* Match tile background */
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 50px;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .description-container h2 {
+            color: #00ADB5; /* Teal Heading */
+            font-size: 32px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .description-container p {
+            color: #A0A0A0;
+        }
+
+        .navbar {
+            background-color: #1E2733; /* Dark Blue/Gray */
+        }
+
+        .navbar-nav .nav-link {
+            color: #E0E0E0;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: #00ADB5; /* Teal on hover */
+        }
+
+        .modal-content {
+            background-color: #28313F; /* Match tile/description container */
+            color: #E0E0E0;
+        }
+
+        .modal-header {
+            border-bottom: 1px solid #38414F; /* Slightly lighter border */
+        }
+
+        .modal-title {
+            color: #E0E0E0;
+        }
+
+        .btn-close {
+            filter: invert(0.8); /* Adjust as needed */
+        }
+
+        .modal-body .form-control {
+            background-color: #38414F;
+            border: 1px solid #48515F; /* Darker border */
+            color: #E0E0E0;
+        }
+
+        .modal-body .form-control:focus {
+            border-color: #00ADB5;
+            box-shadow: 0 0 0 0.2rem rgba(0, 173, 181, 0.25); /* Teal glow */
+        }
+
+        .modal-footer {
+            border-top: 1px solid #38414F;
+        }
+
+        .btn-primary {
+            background-color: #00ADB5; /* Teal Button */
+            border: none;
+            color: #1E2733; /* Dark text on button */
+        }
+
+        .btn-primary:hover {
+            background-color: #009BA1; /* Slightly darker teal on hover */
+            color: #1E2733;
+        }
+
+        .sign-in-btn {
+            background-color: #00ADB5; /* Teal */
+            border: none;
+            color: #1E2733;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+
+        .sign-in-btn:hover {
+            background-color: #009BA1;
+            color: #1E2733;
+        }
+
+        #rating .fa-star {
+            color: #ccc; /* Initial color */
+            cursor: pointer;
+        }
+
+        #rating .fa-star.checked {
+            color: gold; /* Color when checked */
+        }
     </style>
 </head>
-
 <body>
-    <div class="container mt-4">
-        <div class="left-section" id="leftSection">
-            <h1>Welcome to Kids Coding Academy!</h1>
-            <p>Click on the topics on the right to explore HTML, CSS, and web development!</p>
+
+    
+
+    <div class="container">
+        <h1 class="text-center text-white mb-5">Welcome to Kids Coding Academy</h1>
+
+        <div id="home-section" class="description-container">
+            <h2>Welcome to the Kids Coding Academy!</h2>
+            <p>Our website is dedicated to helping young learners explore and learn important coding skills. From building simple websites to understanding databases, we cover a wide range of topics in a fun and interactive way.</p>
+            <p>Whether you're just getting started or looking to level up your skills, our courses in HTML, CSS, JavaScript, and Database concepts are designed to make learning engaging and easy.</p>
+            <p>Join us on this exciting journey and discover the world of coding!</p>
         </div>
-	 <div class="right-section">
-        <h1>Kids Coding Academy</h1>
-
-        <ul class="nav nav-tabs" id="myTab" role="tablist">
-            <li class="nav-item" role="presentation">
-                <button class="nav-link active" id="contents-tab" data-bs-toggle="tab" data-bs-target="#contents" type="button" role="tab" aria-controls="contents" aria-selected="true">Contents</button>
-            </li>
-            <li class="nav-item" role="presentation">
-                <button class="nav-link" id="description-tab" data-bs-toggle="tab" data-bs-target="#description" type="button" role="tab" aria-controls="description" aria-selected="false">Description</button>
-            </li>
-            <li class="nav-item" role="presentation">
-                <button class="nav-link" id="exercises-tab" data-bs-toggle="tab" data-bs-target="#exercises" type="button" role="tab" aria-controls="exercises" aria-selected="false">Exercise Files</button>
-            </li>
-        </ul>
-
-        <div class="tab-content" id="myTabContent">
-            <div class="tab-pane fade show active" id="contents" role="tabpanel" aria-labelledby="contents-tab">
-                <div class="accordion" id="contentAccordion">
-                    <!-- Accordion items will be injected here by JavaScript -->
+<div class="row">
+            <div class="col-md-3">
+                <div class="course-tile" onclick="window.open('HtmlTutorial.html', '_blank')">
+                    <i class="fas fa-code"></i>
+                    <div class="course-title">HTML Basics</div>
+                    <div class="course-description">Learn the building blocks of websites and web pages!</div>
                 </div>
             </div>
-            <div class="tab-pane fade" id="description" role="tabpanel" aria-labelledby="description-tab">
-                <p>Welcome to Kids Coding Academy! This tutorial will teach you the basics of HTML, the language of the web. We'll learn how to build your own web pages and make them look amazing.</p>
+
+            <div class="col-md-3">
+                <div class="course-tile" onclick="location.href='#css'" style="pointer-events: none; opacity: 0.5; cursor: not-allowed;">
+                    <i class="fas fa-paint-brush"></i>
+                    <div class="course-title">CSS Styling...coming soon</div>
+                    <div class="course-description">Make websites beautiful with colors, styles, and layouts!</div>
+                </div>
             </div>
-            <div class="tab-pane fade" id="exercises" role="tabpanel" aria-labelledby="exercises-tab">
-                <p>Download the exercise files here.</p>
+
+            <div class="col-md-3">
+                <div class="course-tile" onclick="location.href='#javascript'" style="pointer-events: none; opacity: 0.5; cursor: not-allowed;">
+                    <i class="fas fa-cogs"></i>
+                    <div class="course-title">JavaScript Fun...coming soon</div>
+                    <div class="course-description">Make websites interactive and add cool features!</div>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="course-tile" onclick="location.href='#database'" style="pointer-events: none; opacity: 0.5; cursor: not-allowed;">
+                    <i class="fas fa-database"></i>
+                    <div class="course-title">Database Basics...coming soon</div>
+                    <div class="course-description">Learn how to store and manage data in databases!</div>
+                </div>
+            </div>
+        </div>
+<br><br>
+  <div id="about-section" class="description-container">
+  <h2>Who We Are</h2>
+  <p>
+    By day, I am a software engineers with a serious case of code-on-the-brain (15+ years' worth!). By night (and often, let's be honest, by day too), I am a dad. This project? It's our attempt to combine our two passions: building cool stuff with code, and helping kids learn cool stuff in general. Consider it a gift from a slightly sleep-deprived but enthusiastic parent/coder.
+  </p>
+
+  <p>
+    But it's more than just a fun project. I believe that in today's rapidly changing world, computer skills aren't just a "nice-to-have" – they're essential. The future is digital, and kids who understand how technology works will have a huge advantage. We want to empower them to not just be consumers of technology, but creators and innovators.
+  </p>
+
+  <p>
+    Learning to code, problem-solve, and think critically about technology will open up a world of opportunities for them, no matter what path they choose in life. From coding the next groundbreaking app to simply navigating the digital world safely and effectively, these skills will be invaluable.
+  </p>
+
+  <p>
+    I am building this resource to help bridge the digital divide and make sure all kids have access to the tools they need to succeed in the 21st century and beyond.  We hope it inspires a new generation of digital creators!
+  </p>
+ <p>Have questions or feedback?  We'd love to hear from you!  Email us at <a href="mailto:youngcodingacademy@gmail.com">youngcodingacademy@gmail.com</a></p>
+</div>
+    </div>
+    </div>
+ 
+    <div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="registerModalLabel">Sign In / Register</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="#" method="POST">
+                        <p class="info-text">To get started, please choose an option:</p>
+
+                        <div class="mb-3">
+                            <label for="studentCode" class="form-label">Enter your Student Code</label>
+                            <input type="text" class="form-control" id="studentCode" name="studentCode" placeholder="Enter your student code to sign in" required>
+                        </div>
+                        <button type="button" class="sign-in-btn">Sign In</button>
+                        <p class="info-text">Or</p>
+
+                        <hr class="my-4">
+
+                        <p class="info-text">Register by entering your email and nickname.</p>
+
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email Address</label>
+                            <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email" required>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="nickname" class="form-label">Nickname</label>
+                            <input type="text" class="form-control" id="nickname" name="nickname" placeholder="Enter your nickname" required>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary w-100">Submit</button>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <p class="footer-text">By registering or signing in, you agree to our Terms & Conditions and Privacy Policy.</p>
+                </div>
             </div>
         </div>
     </div>
+
+<div class="modal fade" id="feedbackModal" tabindex="-1" aria-labelledby="feedbackModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="feedbackModalLabel">Send Feedback</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="feedbackForm">
+                        <div class="mb-3">
+                            <label for="feedbackType" class="form-label">Feedback Type:</label>
+                            <select class="form-select" id="feedbackType" name="feedbackType" required>
+                                <option value="bug">Bug Report</option>
+                                <option value="feature">Feature Request</option>
+                                <option value="suggestion">Suggestion</option>
+                                <option value="general">General Feedback</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="description" class="form-label">Description:</label>
+                            <textarea class="form-control" id="description" name="description" rows="5" required></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email (Optional):</label>
+                            <input type="email" class="form-control" id="email" name="email">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit Feedback</button>
+                    </form>
+                    <div id="feedback-result"></div>
+                </div>
+                <div class="modal-footer">
+                </div>
+            </div>
+        </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const content = {
-            "Welcome to the World of Web Pages!": [
-                "What's a Web Page? (Like a digital magazine!)",
-                "Visiting Websites: How does it work? (Simple explanation)",
-                "What's HTML? (Think of it as the secret code for web pages)",
-                "Getting Started: Your Digital Toolbox",
-                "Text Editors: Your Magic Writing Machine (Introducing VS Code or similar)",
-                "Web Browsers: Your Window to the Web (Chrome, Firefox - how to use them)",
-                "Your First Web Page: Hello, World!",
-                "The Basic HTML Structure (Like building with LEGOs)",
-                "Making a Title for Your Page (What's a title?)",
-                "Adding Your Message (Writing your first words on a webpage)",
-                "Saving and Opening Your Web Page (Seeing your creation!)"
-            ],
-            "Making Your Web Page Awesome!": [
-                "Making Headings (Big and small titles - like in a storybook)",
-                "Writing Paragraphs (Telling your story in words)",
-                "Adding Line Breaks (Starting a new line - like in a poem)",
-                "Drawing Lines (Separating ideas with lines)",
-                "Leaving Secret Notes (Comments - for you to remember things)"
-            ],
-            "Making Your Words Look Cool!": [
-                "Making Words Bold (Important words!)",
-                "Making Words Italic (Slanted words!)",
-                "Underlining Words (Highlighting words)",
-                "Special Characters (Cool symbols like emojis and arrows)"
-            ],
-            "Making Lists (Like a Shopping List!)": [
-                "Unordered Lists (Bullet points - like a checklist)",
-                "Ordered Lists (Numbered lists - like steps in a recipe)"
-            ],
-            "Linking to Other Pages (Like a Treasure Map!)": [
-                "Making Links (Clickable words that take you to other pages)",
-                "Linking to Your Own Pages (Creating your own website with multiple pages!)"
-            ],
-            "Adding Pictures (Making Your Page Colorful!)": [
-                "Inserting Images (Adding photos and drawings)",
-                "Image Sizes (Making pictures big or small)"
-            ],
-            "Tables (Organizing Information)": [
-                "Making Tables (Rows and columns - like a spreadsheet)"
-            ],
-            "Making Forms (Asking Questions!)": [
-                "Input Boxes (Letting people type in answers)",
-                "Buttons (Clickable things that do something)"
-            ],
-            "Making Sections (Organizing Your Page)": [
-                "<div> (Containers for your content)",
-                "<span> (For styling small pieces of text)"
-            ],
-            "Making Your Page Look Even Better (A Sneak Peek at CSS!)": [
-                "Changing Colors and Fonts (Making your page stylish)"
-            ],
-            "Project Time!": [
-                "Build Your Own Website (A simple website about your favorite hobby, animal, or anything you like!)"
-            ],
-            "What's Next?": [
-                "Learning More (Where to find more cool HTML stuff)",
-                "JavaScript (Making your website interactive)"
-            ],
-            "HTML Tag Cheat Sheet": [
-                "(A simplified list of the most important HTML tags)"
-            ]
-        };
 
-        const accordion = document.getElementById('contentAccordion');
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
+ <script>
+        // JavaScript for Feedback Modal
+        const feedbackModal = document.getElementById('feedbackModal');
+        const feedbackForm = document.getElementById('feedbackForm');
+        const feedbackResult = document.getElementById('feedback-result');
 
-for (const section in content) {
-    // Sanitize the section title to create a valid ID
-    const sanitizedSection = section
-        .replace(/[^a-zA-Z0-9\s]/g, '') // Remove special characters
-        .replace(/\s+/g, '-')           // Replace spaces with hyphens
-        .toLowerCase();                 // Convert to lowercase
+        // Star rating
+        const stars = document.querySelectorAll('#rating .fa-star');
+        const ratingValue = document.getElementById('ratingValue');
 
-    const accordionItem = document.createElement('div');
-    accordionItem.classList.add('accordion-item');
+        stars.forEach(star => {
+            star.addEventListener('click', () => {
+                const rating = parseInt(star.dataset.rating);
+                ratingValue.value = rating;
 
-    const accordionHeader = document.createElement('h2');
-    accordionHeader.classList.add('accordion-header');
-
-    const accordionButton = document.createElement('button');
-    accordionButton.classList.add('accordion-button', 'collapsed');
-    accordionButton.type = 'button';
-    accordionButton.setAttribute('data-bs-toggle', 'collapse');
-    accordionButton.setAttribute('data-bs-target', `#collapse-${sanitizedSection}`);
-    accordionButton.setAttribute('aria-expanded', 'false');
-    accordionButton.setAttribute('aria-controls', `collapse-${sanitizedSection}`);
-    accordionButton.textContent = section;
-
-    accordionHeader.appendChild(accordionButton);
-
-    const accordionCollapse = document.createElement('div');
-    accordionCollapse.id = `collapse-${sanitizedSection}`;
-    accordionCollapse.classList.add('accordion-collapse', 'collapse');
-    accordionCollapse.setAttribute('data-bs-parent', '#contentAccordion');
-
-    const accordionBody = document.createElement('div');
-    accordionBody.classList.add('accordion-body');
-
-    const ul = document.createElement('ul');
-  content[section].forEach((item, index) => {
-    const li = document.createElement('li');
-    li.textContent = item;
-    li.addEventListener('click', function() {
-        const chapterFile = `chapter${index + 1}.html`;
-        loadContent(chapterFile);
-    });
-
-        ul.appendChild(li);
-    });
-    accordionBody.appendChild(ul);
-    accordionCollapse.appendChild(accordionBody);
-    accordionItem.appendChild(accordionHeader);
-    accordionItem.appendChild(accordionCollapse);
-    accordion.appendChild(accordionItem);
-}
-    });
-
- document.addEventListener('DOMContentLoaded', function () {
-        const rightSection = document.querySelector('.right-section');
-
-        function showScrollbar() {
-            rightSection.style.scrollbarWidth = "thin"; // Show scrollbar in Firefox
-            rightSection.classList.add("show-scrollbar"); // Add class to show scrollbar
-        }
-
-        function hideScrollbar() {
-            rightSection.classList.remove("show-scrollbar"); // Hide scrollbar
-        }
-
-        rightSection.addEventListener("scroll", function () {
-            rightSection.style.scrollbarWidth = "thin"; // Ensure it's visible
-            rightSection.classList.add("show-scrollbar");
-
-            // Hide after 2 seconds of inactivity
-            clearTimeout(rightSection.hideTimeout);
-            rightSection.hideTimeout = setTimeout(hideScrollbar, 2000);
-        });
-    });
-
-   function loadContent(pageName) {
-            fetch(pageName)
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Failed to load the page');
+                stars.forEach(s => {
+                    if (parseInt(s.dataset.rating) <= rating) {
+                        s.classList.add('checked');
+                    } else {
+                        s.classList.remove('checked');
                     }
-                    return response.text();
-                })
-                .then(data => {
-                    // Update the content in the leftSection
-                    document.getElementById('leftSection').innerHTML = data;
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                    document.getElementById('leftSection').innerHTML = "<p>Sorry, there was an error loading the content.</p>";
                 });
+            });
+        });
+
+        feedbackForm.addEventListener('submit', (event) => {
+            event.preventDefault(); // Prevent default form submission
+
+            // Here you would typically send the form data to your server using AJAX
+            // Example using fetch API:
+
+            fetch('/submit-feedback', { // Replace with your server endpoint
+                method: 'POST',
+                body: new FormData(feedbackForm) // Or JSON.stringify if sending JSON
+            })
+            .then(response => response.json())
+            .then(data => {
+                feedbackResult.textContent = "Thank you for your feedback!";
+                feedbackForm.reset(); // Clear the form
+            })
+            .catch(error => {
+                feedbackResult.textContent = "An error occurred. Please try again later.";
+                console.error("Feedback submission error:", error);
+            });
+
+
+        });
+
+        // Add event listener to a button or link to trigger the modal
+       // Feedback Modal Trigger (Corrected)
+        const feedbackLink = document.getElementById('feedbackLink'); // Get the link element
+
+        if (feedbackLink) { // Check if the element exists
+            feedbackLink.addEventListener('click', (event) => {
+                event.preventDefault(); // Prevent the link from navigating
+                const modal = new bootstrap.Modal(document.getElementById('feedbackModal'));
+                modal.show();
+            });
         }
-</script>
-</body>
+
+// Show About section
+        function showAbout() {
+            document.getElementById("about-section").style.display = "block";
+            document.getElementById("home-section").style.display = "none";
+        }
+    </script>
+ </body>
 </html>
- 
